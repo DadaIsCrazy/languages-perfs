@@ -24,9 +24,17 @@ classic algorithm for finding all prime numbers bellow a given limit)
 in a bunch of languages. I them ran those codes and timed them. Here
 are the results:
 
-| **Language**   | C   | Java   | CPython | Pypy  | Perl  | OCaml/native  | OCaml/bytecode  | PHP | Ruby |
-| -----------    | --- | -----  |-------- | ----- | ----- | ------------- | --------------- | --- | ---- |
-| **Time (sec)** |15   | 15     |  380    |  43   | 585   |  54           |   208           | 253 | 242  |
+| **Language**    | **Time (sec)** |
+| --------------- | -------------- |
+| C               |  15            |
+| Java            |  15            |
+| CPython         |  380           |
+| Pypy            |  43            |
+| Perl            |  585           |
+| OCaml/native    |  54            |
+| OCaml/bytecode  |  208           |
+| PHP             |  253           |
+| Ruby            |  242           |
 
 
 Following text:
