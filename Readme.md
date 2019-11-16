@@ -35,6 +35,7 @@ are the results:
 | OCaml/bytecode  |  208           |
 | PHP             |  253           |
 | Ruby            |  242           |
+| Go              |  32            |
 
 
 Following text:
@@ -49,5 +50,5 @@ Following text:
 
 TODOs:
 
- - Add languages: Common Lisp? Go? R? Scheme? Erlang? Scala? Haskell?
+ - Add languages: Common Lisp? R? Scheme? Erlang? Scala? Haskell?
  - write makefile
