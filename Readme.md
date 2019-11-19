@@ -24,18 +24,23 @@ classic algorithm for finding all prime numbers bellow a given limit)
 in a bunch of languages. I them ran those codes and timed them. Here
 are the results:
 
-| **Language**    | **Time (sec)** |
-| --------------- | -------------- |
-| C               |  15            |
-| Java            |  15            |
-| CPython         |  380           |
-| Pypy            |  43            |
-| Perl            |  585           |
-| OCaml/native    |  54            |
-| OCaml/bytecode  |  208           |
-| PHP             |  253           |
-| Ruby            |  242           |
-| Go              |  32            |
+| **Language**       | **Time (sec)** |
+| ------------------ | -------------- |
+| C                  |  15            |
+| Java               |  15            |
+| CPython            |  380           |
+| Pypy               |  43            |
+| Perl               |  585           |
+| OCaml/native       |  54            |
+| OCaml/bytecode     |  208           |
+| PHP                |  253           |
+| Ruby               |  242           |
+| Go                 |  32            |
+| Racket             |  66            |
+| Common Lisp (sbcl) |  106           |
+| Bash               |  2857*         |
+
+* only up to 1 million
 
 
 Following text:
@@ -50,5 +55,5 @@ Following text:
 
 TODOs:
 
- - Add languages: Common Lisp? R? Scheme? Erlang? Scala? Haskell?
+ - Add languages: R? Erlang? Scala? Haskell?
  - write makefile
