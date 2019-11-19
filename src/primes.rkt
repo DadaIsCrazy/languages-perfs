@@ -17,4 +17,4 @@
 
 ;; Counting prime numbers
 (define total (vector-count (lambda (x) (not x)) nums))
-(printf "Total: ~a\n" total)
+(printf "~a" total)
