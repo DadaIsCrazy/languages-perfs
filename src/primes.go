@@ -1,20 +1,24 @@
 package main
 
-import "fmt"
-
-const max = 1000000000 // 1 billion
-const max_sqrt = 31623
+import (
+	"fmt" // Println
+	"os"  // Args
+	"strconv" // Atoi
+	"math" // Sqrt
+)
 
 func main() {
 
-	var nums [max]bool
+	max, _ := strconv.Atoi(os.Args[1])
+
+	nums := make([]bool, max)
 
 	// 0 and 1 are not primes
 	nums[0] = true
 	nums[1] = true
 
 	// Computing primes
-	for i := 2; i < max_sqrt; i++ {
+	for i := 2; i < int(math.Sqrt(float64(max)))+1; i++ {
 		if nums[i] { continue }
 		for j := i*2; j < max; j += i {
 			nums[j] = true
@@ -28,5 +32,5 @@ func main() {
 			total++
 		}
 	}
-	fmt.Println("Total: ", total)
+	fmt.Println(total)
 }

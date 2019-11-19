@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 
-MAX = 1000000000 # 1 billion
-MAX_SQRT = 31623
+import sys # argv
+import math # sqrt
+
+MAX = int(sys.argv[1])
 
 nums = [False] * MAX
 
@@ -9,7 +11,7 @@ nums = [False] * MAX
 nums[0] = nums[1] = True
 
 # Computing prime numbers
-for i in range(2,MAX_SQRT):
+for i in range(2,int(math.sqrt(MAX))):
     if nums[i] == True:
         continue
     for j in range(i*2,MAX,i):
@@ -19,4 +21,4 @@ for i in range(2,MAX_SQRT):
 total = 0
 for i in nums:
     total += i == False
-print("Total: " + str(total))
+print(total)

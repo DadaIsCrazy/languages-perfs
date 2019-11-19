@@ -1,5 +1,4 @@
-var MAX = 100000000 // (2**27-2)
-var MAX_SQRT = 31623
+var MAX = Number(process.argv[2])
 
 var nums = new Array(MAX).fill(false)
 
@@ -7,7 +6,7 @@ var nums = new Array(MAX).fill(false)
 nums[0] = nums[1] = true
 
 // Computing prime numbers
-for (var i = 2; i < MAX_SQRT; i++) {
+for (var i = 2; i <= Math.sqrt(MAX); i++) {
     if (nums[i]) continue;
     for (var j = i*2; j < MAX; j += i) {
         nums[j] = true
@@ -15,5 +14,5 @@ for (var i = 2; i < MAX_SQRT; i++) {
 }
 
 // Counting prime numbers
-var result = nums.reduce((a,b) => a + (b == false))
-console.log("Total: " + result)
+var total = nums.reduce((a,b) => a + (b == false), 0)
+console.log(""+total)

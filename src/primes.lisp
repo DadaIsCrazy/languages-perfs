@@ -1,5 +1,4 @@
-(defvar mmax 1000000000)
-(defvar mmax_sqrt 31623)
+(defvar mmax (parse-integer (cadr *posix-argv*)))
 
 (defun for-step (f i j s)
   (if (>= i j)
@@ -21,7 +20,7 @@
                 ()
                 (for-step (lambda (j) (setf (aref nums j) t)) (* i 2) mmax i)
                 ))
-          2 mmax_sqrt 1)
+          2 (sqrt mmax) 1)
 
 ;; Counting prime numbers
 (defvar total 0)
@@ -29,4 +28,4 @@
                           ()
                         (incf total))) 0 (- mmax 1) 1)
 
-(format t "Total: ~D~%" total)
+(format t "~D" total)

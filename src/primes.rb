@@ -1,5 +1,4 @@
-max = 1_000_000_000
-max_sqrt = 31623
+max = Integer(ARGV[0])
 
 nums = Array.new(max,false)
 
@@ -7,7 +6,7 @@ nums = Array.new(max,false)
 nums[0] = nums[1] = true
 
 # Computing prime numbers
-(0..max_sqrt).each do |i|
+(0..Math.sqrt(max)).each do |i|
   next if nums[i]
   (i*2 .. max).step(i).each do |j|
     nums[j] = true

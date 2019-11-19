@@ -1,8 +1,7 @@
 #! /usr/bin/env racket
 #lang racket
 
-(define mmax 1000000000)
-(define mmax_sqrt 31623)
+(define mmax (string->number (vector-ref (current-command-line-arguments) 0)))
 
 (define nums (make-vector mmax #f))
 
@@ -11,7 +10,7 @@
 (vector-set! nums 1 #t)
 
 ;; Computing prime numbers
-(for ([i (in-range 2 mmax_sqrt)])
+(for ([i (in-range 2 (sqrt mmax))])
   (when (eq? (vector-ref nums i) #f)
     (for ([j (in-range (* i 2) mmax i)])
       (vector-set! nums j #t))))

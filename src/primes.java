@@ -1,9 +1,8 @@
-class Prime {
-
-    static int MAX = 1_000_000_000; // 1 billion
-    static int MAX_SQRT = 31623;
+class Primes {
 
     public static void main(String[] args) {
+
+        int MAX = Integer.parseInt(args[0]);
 
         boolean[] nums = new boolean[MAX];
 
@@ -11,7 +10,7 @@ class Prime {
         nums[0] = nums[1] = true;
 
         // Computing prime numbers
-        for (int i = 2; i < MAX_SQRT; i++) {
+        for (int i = 2; i <= Math.sqrt(MAX); i++) {
             if (nums[i] == true) continue;
             for (int j = i+i; j < MAX; j += i) {
                 nums[j] = true;
@@ -23,6 +22,6 @@ class Prime {
         for (int i = 0; i < MAX; i++)
             total += nums[i] == false ? 1 : 0;
 
-        System.out.println("Total: " + total);
+        System.out.println(total);
     }
 }

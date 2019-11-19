@@ -1,11 +1,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <math.h>
 
-#define MAX 1e9 // 1 billion
-#define MAX_SQRT 31623
 
-int main() {
+int main(int argc, char** argv) {
+  (void)argc; // avoid warning from |argc| not used
+
+  int MAX = atoi(argv[1]);
 
   bool* nums;
   nums = malloc(MAX * sizeof(*nums));
@@ -14,7 +16,7 @@ int main() {
   nums[0] = nums[1] = 1;
 
   // Computing prime numbers
-  for (int i = 2; i < MAX_SQRT; i++) {
+  for (int i = 2; i <= sqrt(MAX); i++) {
     if (nums[i] == 1) continue;
     for (int j = i+i; j < MAX; j += i) {
       nums[j] = 1;
@@ -26,5 +28,5 @@ int main() {
   for (int i = 0; i < MAX; i++)
     total += nums[i] == 0;
 
-  printf("Total: %u\n", total);
+  printf("%u", total);
 }

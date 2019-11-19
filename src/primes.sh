@@ -1,7 +1,6 @@
 #!/bin/bash
 
-MAX=100000000;
-MAX_SQRT=31623;
+MAX=$1;
 
 nums=()
 
@@ -10,7 +9,7 @@ nums[0]=1
 nums[1]=1
 
 # Computing prime numbers
-for (( i=2; i <= $MAX_SQRT; ++i ))
+for (( i=2; i <= $(bc <<< "sqrt($MAX)"); ++i ))
 do
     if [ ! ${nums[$i]} ]
     then

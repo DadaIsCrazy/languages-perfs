@@ -21,7 +21,7 @@ dedicate to it right now)
 What I've done instead is implement the [Sieve of
 Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) (a
 classic algorithm for finding all prime numbers bellow a given limit)
-in a bunch of languages. I them ran those codes and timed them. Here
+in a bunch of languages. I then ran those codes and timed them. Here
 are the results:
 
 | **Language**       | **Time (sec)** |
