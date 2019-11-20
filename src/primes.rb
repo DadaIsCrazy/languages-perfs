@@ -14,9 +14,6 @@ nums[0] = nums[1] = true
 end
 
 # Counting prime numbers
-total = 0
-nums.each do |i|
-  total += 1 if i == false
-end
+total = nums.count(false)
 
 print(total)
