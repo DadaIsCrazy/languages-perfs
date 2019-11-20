@@ -44,7 +44,10 @@ for my $n (1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000) {
     my $correct_res = run_C($n);
     for (1 .. $repeat) {
         for my $lang (keys %runners) {
-            next if $n > 1000000 && $lang eq 'Bash';
+            if ($n > 1000000 && $lang eq 'Bash') {
+                $res{$lang}->{$n} = [ '-' ];
+                next;
+            }
             next if too_slow($lang, $n);
             printf "\033[2K\rRunning [ %-19s]; n = %d", $lang, $n;
             my ($res, $time) = time_fun($runners{$lang}, $n);
@@ -61,7 +64,9 @@ print "\033[2K\r";
 
 for my $lang (keys %res) {
     my $format_str = "%-20s | " . (join " | ", map { " %13s " } keys %{$res{$lang}}) . "\n";
-    printf $format_str, $lang, map { mean($res{$lang}{$_}) } keys %{$res{$lang}};
+    printf $format_str, $lang, 
+      map { mean($res{$lang}{$_}) }
+        sort { $a <=> $b } keys %{$res{$lang}};
 }
 
 # Runs |$fun| with arguments |@args|, and returns the results as well
