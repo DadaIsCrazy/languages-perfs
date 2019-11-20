@@ -18,7 +18,7 @@ int main(int argc, char** argv) {
   // Computing prime numbers
   for (int i = 2; i <= sqrt(MAX); i++) {
     if (nums[i] == 1) continue;
-    for (int j = i+i; j < MAX; j += i) {
+    for (int j = i*2; j < MAX; j += i) {
       nums[j] = 1;
     }
   }

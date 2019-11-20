@@ -18,7 +18,7 @@ func main() {
 	nums[1] = true
 
 	// Computing primes
-	for i := 2; i < int(math.Sqrt(float64(max)))+1; i++ {
+	for i := 2; i <= int(math.Sqrt(float64(max))); i++ {
 		if nums[i] { continue }
 		for j := i*2; j < max; j += i {
 			nums[j] = true

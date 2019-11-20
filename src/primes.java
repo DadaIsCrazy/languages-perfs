@@ -12,7 +12,7 @@ class Primes {
         // Computing prime numbers
         for (int i = 2; i <= Math.sqrt(MAX); i++) {
             if (nums[i] == true) continue;
-            for (int j = i+i; j < MAX; j += i) {
+            for (int j = i*2; j < MAX; j += i) {
                 nums[j] = true;
             }
         }
