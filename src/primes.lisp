@@ -1,3 +1,5 @@
+(declaim (optimize (speed 3) (debug 0) (safety 0)))
+
 (defvar mmax (parse-integer (cadr *posix-argv*)))
 
 (defvar nums (make-array mmax :initial-element nil))
@@ -13,9 +15,5 @@
               (setf (aref nums j) t))))
 
 ;; Counting prime numbers
-(defvar total 0)
-(loop for i from 0 to (- mmax 1) do
-      (when (not (aref nums i))
-          (incf total)))
-
+(defvar total (count nil nums))
 (print total)
