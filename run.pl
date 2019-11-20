@@ -22,7 +22,7 @@ my $long = 100; # if execution time > $long, then don't run it more than once
 
 my %runners = (
     'Perl'                =>   \&run_perl,
-    'C'                   =>   \&run_C,
+    'C (gcc)'             =>   \&run_C,
     'Go'                  =>   \&run_go,
     'Java'                =>   \&run_java,
     'Javascript (node)'   =>   \&run_javascript,
@@ -32,6 +32,7 @@ my %runners = (
     'PHP'                 =>   \&run_php,
     'Python (CPython)'    =>   \&run_cpython,
     'Python (Pypy)'       =>   \&run_pypy,
+    'Python (numpy)'      =>   \&run_numpy,
     'Racket'              =>   \&run_racket,
     'Bash'                =>   \&run_bash,
     'R'                   =>   \&run_R
@@ -181,7 +182,13 @@ sub run_cpython {
 
 sub run_pypy {
     my ($n) = @_;
-    chomp(my $res = `pypy3 src/primes.py $n 2>/dev/null`);
+    chomp(my $res = `pypy src/primes.py $n 2>/dev/null`);
+    return $res;
+}
+
+sub run_numpy {
+    my ($n) = @_;
+    chomp(my $res = `python3 src/primes_numpy.py $n 2>/dev/null`);
     return $res;
 }
 

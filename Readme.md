@@ -28,8 +28,9 @@ are the results when computing prime numbers up to 1 billion:
 | ------------------ | -------------- |
 | C (gcc)            |  15            |
 | Java               |  15            |
+| Python (numpy)     |  16            |
 | Go                 |  32            |
-| Pypy               |  43            |
+| Python (pypy)      |  43            |
 | OCaml/native       |  54            |
 | Racket             |  66            |
 | R                  |  80            |
@@ -37,7 +38,7 @@ are the results when computing prime numbers up to 1 billion:
 | OCaml/bytecode     |  208           |
 | Ruby               |  242           |
 | PHP                |  253           |
-| CPython            |  380           |
+| Python (CPython)   |  380           |
 | Perl               |  585           |
 | JavaScript (node)  |  18\*          |
 | Bash               |  2857\*\*      |
