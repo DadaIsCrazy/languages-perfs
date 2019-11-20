@@ -16,6 +16,7 @@ chdir $FindBin::Bin;
 make_path 'bin' unless -d 'bin';
 
 my $sbcl_space_size = 16384;
+my $node_space_size = 16384;
 my $repeat = 10;
 my $long = 100; # if execution time > $long, then don't run it more than once
 
@@ -39,11 +40,10 @@ pre_run();
 
 my %res;
 for my $n (1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000) {
-    for my $lang (keys %runners) {
-        next if $n > 1000000 && $lang eq 'Bash';
-        next unless $lang =~ /Java|^C$/;
-        my $correct_res = run_C($n);
-        for (1 .. $repeat) {
+    my $correct_res = run_C($n);
+    for (1 .. $repeat) {
+        for my $lang (keys %runners) {
+            next if $n > 1000000 && $lang eq 'Bash';
             next if too_slow($lang, $n);
             printf "\033[2K\rRunning [ %-19s]; n = %d", $lang, $n;
             my ($res, $time) = time_fun($runners{$lang}, $n);
@@ -137,7 +137,7 @@ sub run_java {
 
 sub run_javascript {
     my ($n) = @_;
-    chomp(my $res = `node src/primes.js $n 2>/dev/null`);
+    chomp(my $res = `node --max-old-space-size=$node_space_size src/primes.js $n 2>/dev/null`);
     return $res;
 }
 
