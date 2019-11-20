@@ -30,4 +30,4 @@ do
     fi
 done
 
-echo "Total: $total"
+echo $total
