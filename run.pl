@@ -33,7 +33,8 @@ my %runners = (
     'Python (CPython)'    =>   \&run_cpython,
     'Python (Pypy)'       =>   \&run_pypy,
     'Racket'              =>   \&run_racket,
-    'Bash'                =>   \&run_bash
+    'Bash'                =>   \&run_bash,
+    'R'                   =>   \&run_R
     );
 
 pre_run();
@@ -194,5 +195,11 @@ sub run_racket {
 sub run_bash {
     my ($n) = @_;
     chomp(my $res = `bash src/primes.sh $n 2>/dev/null`);
+    return $res;
+}
+
+sub run_R {
+    my ($n) = @_;
+    chomp(my $res = `Rscript src/primes.R $n 2>/dev/null`);
     return $res;
 }

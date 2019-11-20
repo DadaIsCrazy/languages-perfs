@@ -32,6 +32,7 @@ are the results when computing prime numbers up to 1 billion:
 | Pypy               |  43            |
 | OCaml/native       |  54            |
 | Racket             |  66            |
+| R                  |  80            |
 | Common Lisp (sbcl) |  106           |
 | OCaml/bytecode     |  208           |
 | Ruby               |  242           |
@@ -41,7 +42,7 @@ are the results when computing prime numbers up to 1 billion:
 | JavaScript (node)  |  18\*          |
 | Bash               |  2857\*\*      |
 
-\* only up to 100 million
+\* only up to 100 million  
 \*\* only up to 1 million
 
 
@@ -60,9 +61,14 @@ Following text:
 
 TODOs:
 
- - Add languages: R? Erlang? Scala? Haskell?
+ - Add languages: Erlang? Scala? Haskell?
  - compute results for various n (in progress)
  - separate compilation from execution? (to distinguish between startup time and compile-time (`javac` is a bit slow for instance))
  - Improve benchmarking (the current precision isn't too great I think)
  - Use charts rather than tables to display the results?
  - Add other examples (which ones? One that would less imperative, like run the collactz series on a notoriously long run?)
+
+
+## Acknowledgments
+
+Thanks to [Lucas](https://github.com/lpeak) for the R implementation.
