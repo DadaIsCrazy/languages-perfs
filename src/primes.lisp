@@ -18,4 +18,4 @@
       (when (not (aref nums i))
           (incf total)))
 
-(format t "~D" total)
+(print total)
