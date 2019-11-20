@@ -22,25 +22,27 @@ What I've done instead is implement the [Sieve of
 Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) (a
 classic algorithm for finding all prime numbers bellow a given limit)
 in a bunch of languages. I then ran those codes and timed them. Here
-are the results:
+are the results when computing prime numbers up to 1 billion:
 
 | **Language**       | **Time (sec)** |
 | ------------------ | -------------- |
-| C                  |  15            |
+| C (gcc)            |  15            |
 | Java               |  15            |
-| CPython            |  380           |
-| Pypy               |  43            |
-| Perl               |  585           |
-| OCaml/native       |  54            |
-| OCaml/bytecode     |  208           |
-| PHP                |  253           |
-| Ruby               |  242           |
 | Go                 |  32            |
+| Pypy               |  43            |
+| OCaml/native       |  54            |
 | Racket             |  66            |
 | Common Lisp (sbcl) |  106           |
-| Bash               |  2857*         |
+| OCaml/bytecode     |  208           |
+| Ruby               |  242           |
+| PHP                |  253           |
+| CPython            |  380           |
+| Perl               |  585           |
+| JavaScript (node)  |  18\*          |
+| Bash               |  2857\*\*      |
 
-* only up to 1 million
+\* only up to 100 million
+\*\* only up to 1 million
 
 
 Following text:
@@ -50,10 +52,14 @@ Following text:
  - explanations about code (add a pseudo-code), explain that trying to stick to it in most languages. (not highly optimized sieve)
  - what to conclude (Java fast, Pypy fast-ish, OCaml slow, ...) and not conclude (no objects, simple progs)
  - memory footprint (C, Java low, Perl, PHP high)
- - Javascript: not doable because max array size =~ 100 million elements.
+ - javascript hard limit on array size (=~ 130 million)
+ - bash very slow
  - some take-aways?
 
 TODOs:
 
  - Add languages: R? Erlang? Scala? Haskell?
- - write makefile
+ - compute results for various n (in progress)
+ - separate compilation from execution? (to distinguish between startup time and compile-time (`javac` is a bit slow for instance))
+ - Improve benchmarking (the current precision isn't too great I think)
+ - Use charts rather than tables to display the results?
