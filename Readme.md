@@ -58,6 +58,7 @@ Following text:
  - bash very slow
  - add some justification for not comparing large systems (would be very time consuming to use objects, templates, etc.)
  - explain that the Sieve of Eratosthenes is a poor choice for functional languages, but it's hard to find a good example that works for all languages...
+ - some further readings about computing prime numbers: how to optimize eratosthene sieves, and what alternatives to use or not.
  - some take-aways?
 
 TODOs:
