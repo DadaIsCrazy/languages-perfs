@@ -19,7 +19,7 @@ my $sbcl_space_size = 16384;
 my $node_space_size = 16384;
 my $repeat = 2;
 my $long = 100; # if execution time > $long, then don't run it more than once
-my @bounds = (1000, 10000);#, 100000, 1000000, 10000000, 100000000, 1000000000);
+my @bounds = (1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000);
 
 my %runners = (
     'Perl'                =>   \&run_perl,
@@ -27,15 +27,15 @@ my %runners = (
     'Go'                  =>   \&run_go,
     'Java'                =>   \&run_java,
     'Javascript (node)'   =>   \&run_javascript,
-    # 'Common Lisp (sbcl)'  =>   \&run_sbcl,
-    # 'OCaml (native)'      =>   \&run_ocaml_native,
-    # 'OCaml (bytecode)'    =>   \&run_ocaml_bytecode,
-    # 'PHP'                 =>   \&run_php,
-    # 'Python (CPython)'    =>   \&run_cpython,
-    # 'Python (Pypy)'       =>   \&run_pypy,
+    'Common Lisp (sbcl)'  =>   \&run_sbcl,
+    'OCaml (native)'      =>   \&run_ocaml_native,
+    'OCaml (bytecode)'    =>   \&run_ocaml_bytecode,
+    'PHP'                 =>   \&run_php,
+    'Python (CPython)'    =>   \&run_cpython,
+    'Python (Pypy)'       =>   \&run_pypy,
     'Python (numpy)'      =>   \&run_numpy,
-    # 'Racket'              =>   \&run_racket,
-    # 'Bash'                =>   \&run_bash,
+    'Racket'              =>   \&run_racket,
+    'Bash'                =>   \&run_bash,
     'R'                   =>   \&run_R
     );
 
