@@ -54,6 +54,8 @@ Following text:
  - memory footprint (C, Java low, Perl, PHP high)
  - javascript hard limit on array size (=~ 130 million)
  - bash very slow
+ - add some justification for not comparing large systems (would be very time consuming to use objects, templates, etc.)
+ - explain that the Sieve of Eratosthenes is a poor choice for functional languages, but it's hard to find a good example that works for all languages...
  - some take-aways?
 
 TODOs:
@@ -63,3 +65,4 @@ TODOs:
  - separate compilation from execution? (to distinguish between startup time and compile-time (`javac` is a bit slow for instance))
  - Improve benchmarking (the current precision isn't too great I think)
  - Use charts rather than tables to display the results?
+ - Add other examples (which ones? One that would less imperative, like run the collactz series on a notoriously long run?)
