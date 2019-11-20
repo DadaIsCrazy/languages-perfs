@@ -22,29 +22,27 @@ What I've done instead is implement the [Sieve of
 Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) (a
 classic algorithm for finding all prime numbers bellow a given limit)
 in a bunch of languages. I then ran those codes and timed them. Here
-are the results when computing prime numbers up to 1 billion:
+are the times in second needed to compute the primes up to a given number:
 
-| **Language**       | **Time (sec)** |
-| ------------------ | -------------- |
-| C (gcc)            |  15            |
-| Java               |  15            |
-| Python (numpy)     |  16            |
-| Go                 |  32            |
-| Python (pypy)      |  43            |
-| OCaml/native       |  54            |
-| Racket             |  66            |
-| R                  |  80            |
-| Common Lisp (sbcl) |  106           |
-| OCaml/bytecode     |  208           |
-| Ruby               |  242           |
-| PHP                |  253           |
-| Python (CPython)   |  380           |
-| Perl               |  585           |
-| JavaScript (node)  |  18\*          |
-| Bash               |  2857\*\*      |
+| **Language**         |    1000  |  10000   |   100000  |  1000000  |  10000000  | 100000000  | 1000000000 |
+| -------------------- | -------- | -------- | --------- | --------- | ---------- | ---------- | ---------- |
+| C (gcc)              |    0.09  |    0.09  |    0.08   |    0.09   |    0.14    |    1.34    |   **17**   |
+| Java                 |    0.81  |    0.81  |    0.78   |    0.85   |    0.86    |    2.03    |   **18**   |
+| Go                   |    0.34  |    0.33  |    0.32   |    0.35   |    0.43    |    1.69    |   **19**   |
+| OCaml (native)       |    0.12  |    0.11  |    0.12   |    0.20   |    0.54    |    4.74    |   **60**   |
+| Python (Pypy)        |    0.05  |    0.05  |    0.05   |    0.10   |    0.49    |    4.66    |   **61**   |
+| Racket               |    0.25  |    0.26  |    0.29   |    0.33   |    0.76    |    5.51    |   **68**   |
+| Common Lisp (sbcl)   |    0.06  |    0.02  |    0.03   |    0.09   |    0.56    |    5.71    |   **75**   |
+| R                    |    0.12  |    0.13  |    0.12   |    0.20   |    0.71    |    6.57    |   **77**   |
+| OCaml (bytecode)     |    0.02  |    0.02  |    0.03   |    0.14   |    1.53    |   17.49    |   **216**  |
+| PHP                  |    0.01  |    0.02  |    0.04   |    0.23   |    2.50    |   29.10    |   **325**  |
+| Python (CPython)     |    0.02  |    0.03  |    0.06   |    0.31   |    3.42    |   35.39    |   **401**  |
+| Perl                 |    0.01  |    0.02  |    0.04   |    0.41   |    4.69    |   54.80    |   **616**  |
+| Javascript (node)    |    0.06  |    0.07  |    0.07   |    0.11   |    0.53    |   30.56    |      -     |
+| Bash                 |    0.08  |    0.46  |   10.84   |  2797.01  |     -      |     -      |      -     |
+| Python (numpy)       |    0.21  |    0.21  |    0.21   |    0.22   |    0.26    |    1.43    |   **17**   |
 
-\* only up to 100 million  
-\*\* only up to 1 million
+(data with standard deviation (on 10 runs) available in [raw_data.txt](raw_data.txt))
 
 
 Following text:
@@ -56,6 +54,7 @@ Following text:
  - memory footprint (C, Java low, Perl, PHP high)
  - javascript hard limit on array size (=~ 130 million)
  - bash very slow
+ - numpy is not the bottom of the list: I feel like using a module specifically designed to handle arrays is cheating. Using a loop instead of `nums[i*2:MAX:i] = True` would have yielded the same performances as CPython (would stronger reinforce the idea that numpy is fast because is has precisely the right builtin).
  - add some justification for not comparing large systems (would be very time consuming to use objects, templates, etc.)
  - explain that the Sieve of Eratosthenes is a poor choice for functional languages, but it's hard to find a good example that works for all languages...
  - some further readings about computing prime numbers: how to optimize eratosthene sieves, and what alternatives to use or not.
