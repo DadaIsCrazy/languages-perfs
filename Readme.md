@@ -44,13 +44,6 @@ are the times in second needed to compute the primes up to a given number:
 
 (data with standard deviation (on 10 runs) available in [raw_data.txt](raw_data.txt))
 
-Compile times (already included in the previous numbers; to be removed from there soon):
-
-| Language           | gcc  |  Go  | OCaml/native | OCaml/bytecode | Sbcl | Java |
-| ------------------ | ---- | ---- | ------------ | -------------- | ---- | ---- |
-| Compile time (sec) | 0.06 | 0.43 |  0.13        |   0.01         | 0.01 | 0.70 |
-
-
 Following text:
 
  - explanations about languages used (versions, etc)
@@ -61,7 +54,7 @@ Following text:
  - javascript hard limit on array size (=~ 130 million)
  - bash very slow
  - numpy is not the bottom of the list: I feel like using a module specifically designed to handle arrays is cheating. Using a loop instead of `nums[i*2:MAX:i] = True` would have yielded the same performances as CPython (would stronger reinforce the idea that numpy is fast because is has precisely the right builtin).
- - add some justification for not comparing large systems (would be very time consuming to use objects, templates, etc.)
+ - add some justification for not comparing large systems (would be more consuming to develop codes using objects, templates, etc.)
  - explain that the Sieve of Eratosthenes is a poor choice for functional languages, but it's hard to find a good example that works for all languages...
  - some further readings about computing prime numbers: how to optimize eratosthene sieves, and what alternatives to use or not.
  - some take-aways?
@@ -69,8 +62,6 @@ Following text:
 TODOs:
 
  - Add languages: Erlang? Scala? Haskell?
- - compute results for various n (in progress)
- - separate compilation from execution? (to distinguish between startup time and compile-time (`javac` is a bit slow for instance))
  - Improve benchmarking (the current precision isn't too great I think)
  - Use charts rather than tables to display the results?
  - Add other examples (which ones? One that would less imperative, like run the collactz series on a notoriously long run?)
