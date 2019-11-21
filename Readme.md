@@ -44,6 +44,12 @@ are the times in second needed to compute the primes up to a given number:
 
 (data with standard deviation (on 10 runs) available in [raw_data.txt](raw_data.txt))
 
+Compile times (already included in the previous numbers; to be removed from there soon):
+
+| Language           | gcc  |  Go  | OCaml/native | OCaml/bytecode | Sbcl | Java |
+| ------------------ | ---- | ---- | ------------ | -------------- | ---- | ---- |
+| Compile time (sec) | 0.06 | 0.43 |  0.13        |   0.01         | 0.01 | 0.70 |
+
 
 Following text:
 

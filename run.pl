@@ -17,7 +17,7 @@ make_path 'bin' unless -d 'bin';
 
 my $sbcl_space_size = 16384;
 my $node_space_size = 16384;
-my $repeat = 2;
+my $repeat = 10;
 my $long = 100; # if execution time > $long, then don't run it more than once
 my @bounds = (1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000);
 
