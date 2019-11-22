@@ -15,6 +15,7 @@ use Scalar::Util qw(looks_like_number);
 chdir $FindBin::Bin;
 make_path 'bin' unless -d 'bin';
 
+my $VERBOSE = 1;
 my $sbcl_space_size = 16384;
 my $node_space_size = 16384;
 my $repeat = 10;
@@ -61,12 +62,12 @@ sub bench_compile {
     my %compile_times;
     for (1 .. $repeat) {
         for my $lang (keys %compile_hooks) {
-            printf "\033[2K\rCompiling [ %-19s] ($_/$repeat)", $lang;
+            printf "\033[2K\rCompiling [ %-19s] ($_/$repeat)", $lang if $VERBOSE;
             my (undef, $time) = time_fun($compile_hooks{$lang});
             push @{$compile_times{$lang}}, $time;
         }
     }
-    print "\033[2K\r";
+    print "\033[2K\r" if $VERBOSE;
     return \%compile_times;
 }
 
@@ -82,7 +83,7 @@ sub bench_runs {
                     next;
                 }
                 next if too_slow(\%run_times, $lang, $n);
-                printf "\033[2K\rRunning [ %-19s]; n = %d", $lang, $n;
+                printf "\033[2K\rRunning [ %-19s]; n = %d", $lang, $n if $VERBOSE;
                 my ($res, $time) = time_fun($runners{$lang}, $n);
                 if (looks_like_number($res) && $res == $correct_res) {
                     push @{$run_times{$lang}->{$n}}, $time;
@@ -92,7 +93,7 @@ sub bench_runs {
             }
         }
     }
-    print "\033[2K\r";
+    print "\033[2K\r" if $VERBOSE;
     return \%run_times;
 }
 
