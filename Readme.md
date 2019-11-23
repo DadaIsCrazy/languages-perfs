@@ -50,7 +50,19 @@ The benchmarks were ran on a Intel Xeon E5-2699 v4 @ 2.20GHz.
 
 The following compiler/languages versions were used:
 
-
+ - Bash 4.4.20
+ - GCC 7.4.0
+ - Go 1.10.4
+ - Java OpenJDK 11.0.4
+ - Node.js 8.10.0
+ - OCaml 4.05.0
+ - PHP 7.2.24
+ - Perl 5.26.1
+ - PyPy 5.10.0
+ - Python 3.6.8
+ - R 3.4.4
+ - Racket 6.11
+ - SBCL 1.4.5
 
 ## Text not written yet:
 

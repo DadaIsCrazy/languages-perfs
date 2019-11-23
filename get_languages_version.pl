@@ -23,6 +23,12 @@ my %version_subs = (
     );
 
 for my $lang (sort keys %version_subs) {
+    # Note that there is no error checking: if the sub fails to find
+    # the version number, then "say" will emit a warning saying that
+    # the version is unitialized; this should be enough for whoever
+    # runs this script to investiguate.
+    # If on the other hand, the subs finds a wrong version
+    # number... well, tough luck :p
     say " - $lang ", $version_subs{$lang}->();
 }
 
@@ -45,6 +51,9 @@ sub get_go_version {
 }
 
 sub get_java_version {
+    # Note: this doesn't seem to be standard at all: we might need to
+    # run instead `java -version`, and the output can vary even when
+    # running `java --version`.
     my $version_string = `java --version`;
     my ($version) = $version_string =~ /^java ($version_re)/;
     return $version;
