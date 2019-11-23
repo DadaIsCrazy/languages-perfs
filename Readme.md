@@ -26,8 +26,8 @@ are the times in second needed to compute the primes up to a given number:
 
 | **Language**        | Compilation | 1000 | 10000 | 100000 | 1000000 | 10000000 | 100000000 | 1000000000 |
 | ------------------- | ----------- | ---- | ----- | ------ | ------- | -------- | --------- | ---------- |
-| Java                | 0.59        | 0.08 | 0.08  | 0.10   | 0.10    | 0.16     | 1.21      | **13**     |
 | C (gcc)             | 0.11        | 0.00 | 0.00  | 0.00   | 0.01    | 0.06     | 1.10      | **13**     |
+| Java                | 0.59        | 0.08 | 0.08  | 0.10   | 0.10    | 0.16     | 1.21      | **13**     |
 | Go                  | 0.13        | 0.01 | 0.01  | 0.01   | 0.01    | 0.06     | 1.18      | **15**     |
 | R                   | -           | 0.12 | 0.13  | 0.15   | 0.17    | 0.67     | 6.57      | **76**     |
 | OCaml (native)      | 0.16        | 0.01 | 0.01  | 0.01   | 0.05    | 0.71     | 11.71     | **132**    |
@@ -46,7 +46,14 @@ are the times in second needed to compute the primes up to a given number:
 
 ## Run configuration
 
-The benchmarks were ran on a Intel Xeon E5-2699 v4 @ 2.20GHz.
+### Computer
+
+The benchmarks were ran on a Intel Xeon E5-2699 v4 @ 2.20GHz (for
+those who are not really knowledgeable about Intel's CPU: that's a
+high-end Intel server CPU).
+
+
+### Languages
 
 The following compiler/languages versions were used:
 
@@ -64,22 +71,48 @@ The following compiler/languages versions were used:
  - Racket 6.11
  - SBCL 1.4.5
 
+### Benchmarking methodology
+
+(what I call a _benchmark_ thereafter is _a single run of a program
+computing once the number of prime numbers up to a given limit using
+Eratosthenes sieve_)
+
+The benchmarks are ran by the script [run.pl](run.pl). It repeats each
+benchmark [10 times](run.pl#L21), except if the benchmark takes more
+than [100 seconds](run.pl#L23), in which case it only runs it [3
+times](run.pl#L22).
+
+Benchmarks are ran from Perl using a
+[`system`](https://perldoc.perl.org/functions/system.html) call, which
+spawns a new process to run each benchmark.
+
+Time is measured using Perl's builtin
+[`time`](https://perldoc.perl.org/functions/time.html) builtin (which
+is made precise to the micro-second thanks to the module
+[Time::HiRes](https://perldoc.perl.org/Time/HiRes.html).
+
+This way of running the benchmark is arguably not super precise
+(spawning a new process for each benchmark, using Perl's time
+function, ...), but we run each benchmark 10 times, which should
+reduce a little bit the uncertainty of the results, and the overhead
+induced by spawning new processes is same for each language, so this
+is mostly fair.
+
+
 ## Text not written yet:
 
- - explanations about languages used (versions, etc)
- - explanations about methodology (shell's time, repeat experiment..)
  - explanations about code (add a pseudo-code), explain that trying to stick to it in most languages. (not highly optimized sieve)
  - what to conclude (Java fast, Pypy fast-ish, OCaml slow, ...) and not conclude (no objects, simple progs)
  - memory footprint (C, Java low, Perl, PHP high)
  - javascript hard limit on array size (=~ 130 million)
  - bash very slow
  - numpy is not the bottom of the list: I feel like using a module specifically designed to handle arrays is cheating. Using a loop instead of `nums[i*2:MAX:i] = True` would have yielded the same performances as CPython (would stronger reinforce the idea that numpy is fast because is has precisely the right builtin).
- - add some justification for not comparing large systems (would be more consuming to develop codes using objects, templates, etc.)
+ - add some justification for not comparing large systems (would be more time consuming to develop codes using objects, templates, etc.)
  - explain that the Sieve of Eratosthenes is a poor choice for functional languages, but it's hard to find a good example that works for all languages...
  - some further readings about computing prime numbers: how to optimize eratosthene sieves, and what alternatives to use or not.
  - some take-aways?
 
-TODOs:
+## TODOs:
 
  - Add languages: Erlang? Scala? Haskell?
  - Improve benchmarking (the current precision isn't too great I think)
@@ -89,4 +122,4 @@ TODOs:
 
 ## Acknowledgments
 
-Thanks to [Lucas](https://github.com/lpeak) for the R implementation.
+Thanks to [Lucas](https://github.com/lpeak) for the R and the Numpy implementations.
