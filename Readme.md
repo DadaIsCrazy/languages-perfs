@@ -44,7 +44,15 @@ are the times in second needed to compute the primes up to a given number:
 
 (data with standard deviation (on 10 runs) available in [raw_data.txt](raw_data.txt))
 
-Following text:
+## Run configuration
+
+The benchmarks were ran on a Intel Xeon E5-2699 v4 @ 2.20GHz.
+
+The following compiler/languages versions were used:
+
+
+
+## Text not written yet:
 
  - explanations about languages used (versions, etc)
  - explanations about methodology (shell's time, repeat experiment..)
