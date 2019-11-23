@@ -19,6 +19,7 @@ my $VERBOSE = 1;
 my $sbcl_space_size = 16384;
 my $node_space_size = 16384;
 my $repeat = 10;
+my $minimal_runs = 3; # For slow runs; still, run at least this many times
 my $long = 100; # if execution time > $long, then don't run it more than once
 my @bounds = (1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000);
 
@@ -178,6 +179,7 @@ sub mean {
 sub too_slow {
     my ($run_times, $lang, $n) = @_;
     return 0 unless $run_times->{$lang}->{$n}; # First execution
+    return 0 if @{$run_times->{$lang}->{$n}} < $minimal_runs; # Not enough executions
     return 1 unless looks_like_number($run_times->{$lang}->{$n}->[-1]);
     return $run_times->{$lang}->{$n}->[-1] > $long;
 }
