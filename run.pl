@@ -16,12 +16,14 @@ chdir $FindBin::Bin;
 make_path 'bin' unless -d 'bin';
 
 my $VERBOSE = 1;
-my $sbcl_space_size = 16384;
+my $sbcl_space_size = 8192;
 my $node_space_size = 16384;
+my $scala_space_size = "2g";
 my $repeat = 10;
 my $minimal_runs = 3; # For slow runs; still, run at least this many times
 my $long = 100; # if execution time > $long, then don't run it more than once
 my @bounds = (1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000);
+my $pattern = ""; # if defined, run only languages that match this pattern
 
 my %runners = (
     'Perl'                =>   \&run_perl,
@@ -38,7 +40,8 @@ my %runners = (
     'Python (numpy)'      =>   \&run_numpy,
     'Racket'              =>   \&run_racket,
     'Bash'                =>   \&run_bash,
-    'R'                   =>   \&run_R
+    'R'                   =>   \&run_R,
+    'Scala'               =>   \&run_scala
     );
 
 my %compile_hooks = (
@@ -47,7 +50,8 @@ my %compile_hooks = (
     'Java'                => \&compile_java,
     'Common Lisp (sbcl)'  => \&compile_sbcl,
     'OCaml (native)'      => \&compile_ocaml_native,
-    'OCaml (bytecode)'    => \&compile_ocaml_bytecode
+    'OCaml (bytecode)'    => \&compile_ocaml_bytecode,
+    'Scala'               => \&compile_scala
     );
 
 
@@ -63,6 +67,7 @@ sub bench_compile {
     my %compile_times;
     for (1 .. $repeat) {
         for my $lang (keys %compile_hooks) {
+            next unless $lang =~ /$pattern/;
             printf "\033[2K\rCompiling [ %-19s] ($_/$repeat)", $lang if $VERBOSE;
             my (undef, $time) = time_fun($compile_hooks{$lang});
             push @{$compile_times{$lang}}, $time;
@@ -78,6 +83,7 @@ sub bench_runs {
         my $correct_res = run_C($n);
         for (1 .. $repeat) {
             for my $lang (keys %runners) {
+                next unless $lang =~ /$pattern/;
                 if ($n > 1000000 && $lang eq 'Bash') {
                     # Bash would be way too slow for n > 1000000
                     $run_times{$lang}->{$n} = [ '-' ];
@@ -190,6 +196,19 @@ sub pre_run {
     # Due to how OCaml is compiled; it's easier to put the source in
     # the bin folder.
     copy "src/primes.ml", "bin/primes.ml";
+
+    # Scala and Java will generate .class with the same name. To avoid
+    # that, we copy Scala's source code and rename its main class.
+    copy "src/primes.scala", "bin/PrimesScala.scala";
+    {
+        local $^I = "";
+        local @ARGV = "bin/PrimesScala.scala";
+        while (<>) {
+            s/object Primes/object PrimesScala/;
+        } continue {
+            print;
+        }
+    }
 }
 
 sub run_perl {
@@ -222,6 +241,17 @@ sub compile_java {
 sub run_java {
     my ($n) = @_;
     chomp(my $res = `java -cp bin Primes $n 2>/dev/null`);
+    return $res;
+}
+
+# Warning: Scala's source file has been moved to bin/PrimesScala.scala
+# by pre_run(). (see pre_run's documentation for explanations)
+sub compile_scala {
+    system "scalac -d bin bin/PrimesScala.scala";
+}
+sub run_scala {
+    my ($n) = @_;
+    chomp(my $res = `scala -J-Xmx$scala_space_size -cp bin PrimesScala $n`);
     return $res;
 }
 
