@@ -20,6 +20,7 @@ my %version_subs = (
     'R'       => \&get_R_version,
     'Racket'  => \&get_racket_version,
     'SBCL'    => \&get_sbcl_version,
+    'Scala'   => \&get_scala_version
     );
 
 for my $lang (sort keys %version_subs) {
@@ -121,4 +122,10 @@ sub get_sbcl_version {
     my $version_string = `sbcl --version`;
     my ($version) = $version_string =~ /SBCL ($version_re)/;
     return $version;
+}
+
+sub get_scala_version {
+    my $version_string = `scala -version 2>&1`;
+    my ($version) = $version_string =~ /version ($version_re)/;
+    return $version
 }
