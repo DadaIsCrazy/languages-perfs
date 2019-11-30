@@ -39,6 +39,7 @@ my %runners = (
     'Python (Pypy)'       =>   \&run_pypy,
     'Python (numpy)'      =>   \&run_numpy,
     'Racket'              =>   \&run_racket,
+    'Ruby'                =>   \&run_ruby,
     'Bash'                =>   \&run_bash,
     'R'                   =>   \&run_R,
     'Scala'               =>   \&run_scala

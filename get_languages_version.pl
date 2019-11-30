@@ -19,6 +19,7 @@ my %version_subs = (
     'OCaml'   => \&get_ocaml_version,
     'R'       => \&get_R_version,
     'Racket'  => \&get_racket_version,
+    'Ruby'    => \&get_ruby_version,
     'SBCL'    => \&get_sbcl_version,
     'Scala'   => \&get_scala_version
     );
@@ -115,6 +116,12 @@ sub get_R_version {
 sub get_racket_version {
     my $version_string = `racket -v`;
     my ($version) = $version_string =~ /Racket v(\d+\.\d+)/;
+    return $version;
+}
+
+sub get_ruby_version {
+    my $version_string = `ruby -v`;
+    my ($version) = $version_string =~ /ruby ($version_re)/;
     return $version;
 }
 
