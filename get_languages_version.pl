@@ -20,6 +20,7 @@ my %version_subs = (
     'R'       => \&get_R_version,
     'Racket'  => \&get_racket_version,
     'Ruby'    => \&get_ruby_version,
+    'Rust'    => \&get_rust_version,
     'SBCL'    => \&get_sbcl_version,
     'Scala'   => \&get_scala_version
     );
@@ -122,6 +123,12 @@ sub get_racket_version {
 sub get_ruby_version {
     my $version_string = `ruby -v`;
     my ($version) = $version_string =~ /ruby ($version_re)/;
+    return $version;
+}
+
+sub get_rust_version {
+    my $version_string = `rustc --version`;
+    my ($version) = $version_string =~ /rustc ($version_re)/;
     return $version;
 }
 

@@ -42,7 +42,8 @@ my %runners = (
     'Ruby'                =>   \&run_ruby,
     'Bash'                =>   \&run_bash,
     'R'                   =>   \&run_R,
-    'Scala'               =>   \&run_scala
+    'Scala'               =>   \&run_scala,
+    'Rust'                =>   \&rust
     );
 
 my %compile_hooks = (
@@ -52,6 +53,7 @@ my %compile_hooks = (
     'Common Lisp (sbcl)'  => \&compile_sbcl,
     'OCaml (native)'      => \&compile_ocaml_native,
     'OCaml (bytecode)'    => \&compile_ocaml_bytecode,
+    'Rust'                => \&rust,
     'Scala'               => \&compile_scala
     );
 
@@ -289,6 +291,15 @@ sub run_ocaml_bytecode {
     return $res;
 }
 
+sub compile_rust {
+    system "rustc -C opt-level=3 src/primes.rs -o bin/primes_rust";
+}
+sub run_rust {
+    my ($n) = @_;
+    chomp(my $res = `./bin/primes_rust $n 2>/dev/null`);
+    return $res;
+}
+
 sub run_php {
     my ($n) = @_;
     chomp(my $res = `php src/primes.php $n 2>/dev/null`);
@@ -313,15 +324,15 @@ sub run_numpy {
     return $res;
 }
 
-sub run_ruby {
-    my ($n) = @_;
-    chomp(my $res = `ruby src/primes.rb $n 2>/dev/null`);
-    return $res;
-}
-
 sub run_racket {
     my ($n) = @_;
     chomp(my $res = `racket src/primes.rkt $n 2>/dev/null`);
+    return $res;
+}
+
+sub run_ruby {
+    my ($n) = @_;
+    chomp(my $res = `ruby src/primes.rb $n 2>/dev/null`);
     return $res;
 }
 
