@@ -8,7 +8,7 @@ nums[0] = nums[1] = true
 // Computing prime numbers
 for (var i = 2; i <= Math.sqrt(MAX); i++) {
     if (nums[i]) continue;
-    for (var j = i*2; j < MAX; j += i) {
+    for (var j = i*i; j < MAX; j += i) {
         nums[j] = true
     }
 }

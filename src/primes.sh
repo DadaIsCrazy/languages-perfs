@@ -13,7 +13,7 @@ for (( i=2; i <= $(bc <<< "sqrt($MAX)"); ++i ))
 do
     if [ ! ${nums[$i]} ]
     then
-        for (( j=i*2; j < MAX; j+=i ))
+        for (( j=i*i; j < MAX; j+=i ))
         do
             nums[$j]=1
         done

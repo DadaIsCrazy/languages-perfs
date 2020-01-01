@@ -11,7 +11,7 @@
 ;; Computing prime numbers
 (loop for i from 2 to (sqrt mmax) by 1 do
       (when (not (aref nums i))
-        (loop for j from (* i 2) to (- mmax 1) by i do
+        (loop for j from (* i i) to (- mmax 1) by i do
               (setf (aref nums j) t))))
 
 ;; Counting prime numbers

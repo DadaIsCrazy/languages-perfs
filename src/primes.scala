@@ -12,7 +12,7 @@ object Primes {
     // Computing prime numbers
     for (i <- 0 until math.sqrt(max).toInt+1) {
       if (nums(i) == false) {
-        for (j <- i*2 until max by i) {
+        for (j <- i*i until max by i) {
           nums(j) = true
         }
       }

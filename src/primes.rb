@@ -8,7 +8,7 @@ nums[0] = nums[1] = true
 # Computing prime numbers
 (Math.sqrt(max)).ceil.times do |i|
   next if nums[i]
-  (i*2 .. max).step(i).each do |j|
+  (i*i .. max).step(i).each do |j|
     nums[j] = true
   end
 end

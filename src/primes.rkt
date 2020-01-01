@@ -12,7 +12,7 @@
 ;; Computing prime numbers
 (for ([i (in-range 2 (sqrt mmax))])
   (when (eq? (vector-ref nums i) #f)
-    (for ([j (in-range (* i 2) mmax i)])
+    (for ([j (in-range (* i i) mmax i)])
       (vector-set! nums j #t))))
 
 ;; Counting prime numbers

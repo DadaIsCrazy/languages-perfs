@@ -14,7 +14,7 @@ nums[0] = nums[1] = True
 for i in range(2,int(math.sqrt(MAX))+1):
     if nums[i] == True:
         continue
-    for j in range(i*2,MAX,i):
+    for j in range(i*i,MAX,i):
         nums[j] = True;
 
 # Counting prime numbers

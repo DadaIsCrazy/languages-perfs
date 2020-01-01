@@ -14,7 +14,7 @@ let _ =
   (* Computing prime numbers *)
   for i = 2 to int_of_float (sqrt (float_of_int max)) do
     if Array.get nums i = false then
-      for_step (fun i -> Array.set nums i true) (i*2) max i
+      for_step (fun i -> Array.set nums i true) (i*i) max i
   done;
 
   (* Counting the prime numbers *)

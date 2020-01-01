@@ -15,9 +15,8 @@ nums[0] = nums[1] = True
 for i in range(2,int(math.sqrt(MAX))+1):
     if nums[i] == True:
         continue
-    nums[i*2:MAX:i] = True
+    nums[i*i:MAX:i] = True
 
 # Counting prime numbers
 total = MAX - np.count_nonzero(nums)
 print(total)
-

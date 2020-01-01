@@ -10,7 +10,7 @@ $nums[0] = $nums[1] = true;
 // Computing prime numbers
 for ($i = 2; $i < sqrt($max); $i++) {
   if ($nums[$i]) continue;
-  for ($j = $i*2; $j < $max; $j+=$i)
+  for ($j = $i*$i; $j < $max; $j+=$i)
     $nums[$j] = true;
 }
 

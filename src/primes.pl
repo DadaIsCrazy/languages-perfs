@@ -15,7 +15,7 @@ $nums[0] = $nums[1] = 1;
 # Computing prime numbers
 for my $i (2 .. sqrt($MAX)) {
     next if $nums[$i];
-    for (my $j = $i*2; $j < $MAX; $j += $i) {
+    for (my $j = $i*$i; $j < $MAX; $j += $i) {
         $nums[$j] = 1;
     }
 }

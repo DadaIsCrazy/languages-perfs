@@ -13,7 +13,7 @@ fn main() {
     // Computing prime numbers
     for i in 2..(1+(max as f64).sqrt() as usize) {
         if nums[i] { continue; }
-        for j in (i*2..max).step_by(i) {
+        for j in (i*i..max).step_by(i) {
             nums[j] = true;
         }
     }

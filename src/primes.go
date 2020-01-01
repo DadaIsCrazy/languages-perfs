@@ -20,7 +20,7 @@ func main() {
 	// Computing primes
 	for i := 2; i <= int(math.Sqrt(float64(max))); i++ {
 		if nums[i] { continue }
-		for j := i*2; j < max; j += i {
+		for j := i*i; j < max; j += i {
 			nums[j] = true
 		}
 	}
